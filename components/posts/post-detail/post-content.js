@@ -2,6 +2,8 @@ import PostHeader from "./post-header";
 import classes from "./post-content.module.css";
 import ReactMarkdown from "react-markdown";
 import Image from "next/dist/client/image";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 // const Dummy_Post = {
 //   title: "Getting started with NextJS",
@@ -30,7 +32,7 @@ export default function PostContent(props) {
     p(paragraph) {
       const { node } = paragraph;
 
-      if (node.children[0].tagName === 'img') {
+      if (node.children[0].tagName === "img") {
         const image = node.children[0];
 
         return (
@@ -46,6 +48,16 @@ export default function PostContent(props) {
       }
 
       return <p>{paragraph.children}</p>;
+    },
+
+    code(code) {
+      const { className, children } = code;
+      const language = className.split("-")[1]; // className is something like language-js => We need the "js" part here
+      return (
+        <SyntaxHighlighter style={atomDark} language={language}>
+          {children}
+        </SyntaxHighlighter>
+      );
     },
   };
 
