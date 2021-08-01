@@ -33,12 +33,10 @@ export default async function handler(req, res) {
         "mongodb+srv://thetooaung:thetooaung@cluster0.uclkr.mongodb.net/next-blog?retryWrites=true&w=majority"
       );
     } catch (error) {
-      res
-        .status(500)
-        .json({
-          message:
-            "Something went wrong on the server. Could not connect to the database",
-        });
+      res.status(500).json({
+        message:
+          "Something went wrong on the server. Could not connect to the database",
+      });
     }
 
     const db = client.db();
