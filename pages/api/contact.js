@@ -28,6 +28,8 @@ export default async function handler(req, res) {
 
     let client;
 
+    const connectionString = `mongodb+srv://${process.env.db_username}:${process.env.db_password}@${process.env.db_clustername}.uclkr.mongodb.net/${process.env.db}?retryWrites=true&w=majority`
+
     try {
       client = await MongoClient.connect(
         "mongodb+srv://thetooaung:thetooaung@cluster0.uclkr.mongodb.net/next-blog?retryWrites=true&w=majority"
